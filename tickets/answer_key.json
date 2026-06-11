@@ -1,0 +1,23 @@
+[
+  {
+    "id": "ticket_01",
+    "file": "ticket_01.txt",
+    "expected_category": "Network/Connectivity",
+    "expected_urgency": "Medium",
+    "note": "Out-of-country (TDY Germany) blocking base apps via firewall/VPN. Thursday briefing is a mild impact signal -> Medium, not Low."
+  },
+  {
+    "id": "ticket_02",
+    "file": "ticket_02.txt",
+    "expected_category": "Account/Password",
+    "expected_urgency": "High",
+    "note": "Account locked from repeated failed logins; fine yesterday suggests an expired/changed password being retried. Fully locked out + same-day deadline -> High by impact, though a lockout is routine by topic."
+  },
+  {
+    "id": "ticket_03",
+    "file": "ticket_03.txt",
+    "expected_category": "Access/SSO",
+    "expected_urgency": "Medium",
+    "note": "SharePoint access denied though login works -> permissions likely changed/removed from a group. Borderline Software/Applications vs Access/SSO; filed Access/SSO as a permission problem, not a usage question. Meeting tomorrow + not fully blocked -> Medium."
+  }
+]

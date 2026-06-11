@@ -1,0 +1,9 @@
+Subject: cant access project sharepoint site
+
+hey - im trying to get into our project sharepoint site this morning and it keeps telling me that i dont have permission to access the page. i was able to get in without any issues last week, but now every link i try either gives me an access denied message or sends me back to the main sharepoint homepage.
+i can still log into my laptop and outlook just fine, but i need access to the site because all of our project documents, meeting notes, and task trackers are stored there. we've got a team meeting tomorrow and i need to review the latest files before then.
+could someone check my permissions and let me know if anything changed?
+
+thanks,
+
+Q Branch
