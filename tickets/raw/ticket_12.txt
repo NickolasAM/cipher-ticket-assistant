@@ -1,0 +1,6 @@
+Returned from leave last Friday. Everything seemed fine until I tried to get into the contracting portal this morning. When I click the login button it loads for a while and then drops me back to the homepage without logging me in — no error message, just back to the start.
+
+My CAC works fine for the workstation login and Outlook is working normally, so I don't think the card itself is the problem, but something isn't connecting for that specific application. Nothing has changed on my end. Last time I used the portal was about three weeks ago before I went on leave.
+
+SFC Torres
+Contracting Office

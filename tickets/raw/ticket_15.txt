@@ -1,0 +1,14 @@
+Hi,
+
+I'm not sure if this is an IT issue or an admin issue but someone told me to email you guys so here I am.
+
+My name is Frank Delgado and I work in the acquisition office. A colleague of mine (Lt. Rosenstein) sent me a link to a SharePoint site that her team uses to manage their project documents. When I click the link it asks me to sign in, I do, and then it tells me "Access Denied — You need permission to access this site." I told Lt. Rosenstein and she said she thought she added me to the site already but apparently it didn't take, or maybe she did something wrong, I'm not really sure.
+
+I've tried it on Chrome, Edge, and even cleared my cache like the IT tip sheet says to do. Same message every time. I also tried going to the main SharePoint homepage and searching for the site by name and it doesn't even show up in the results, which seems strange to me.
+
+Is this something that can be fixed on your end, or does Lt. Rosenstein need to do something specific on her end to grant me access? We have a document review meeting on Thursday and I really need to be in there before then.
+
+Thanks for any help.
+
+Frank Delgado
+Acquisition Office, Rm 302

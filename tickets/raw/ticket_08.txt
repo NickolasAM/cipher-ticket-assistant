@@ -1,0 +1,10 @@
+Hi IT,
+
+I'm currently on a temporary assignment overseas and I'm running into a strange problem. My personal laptop works totally fine on the same wifi — I can browse the internet, no issues at all. But on my government laptop, basically nothing internal will load. Teams seems to work okay, and I can send and receive personal emails, but anything related to our internal systems just hangs or gives me a "site can't be reached" error. I tried accessing the unit portal and the logistics tracking system and both just time out. Even the base homepage won't pull up.
+
+I've tried three different networks at this point and get the same result on all of them, so I don't think it's a local wifi problem.
+
+I'm going to be here for another two weeks and I really need access to the internal tools to get my work done. Any help would be appreciated.
+
+Thanks,
+MSG Devin Calloway

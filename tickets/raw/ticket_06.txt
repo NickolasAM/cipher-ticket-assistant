@@ -1,0 +1,14 @@
+Subject: Unable to Access Outlook – Continuous Login Redirect
+
+Good morning,
+
+I am writing to report that I have been unable to access my Outlook account since yesterday afternoon. Each time I attempt to log in, I am redirected to the login page again after entering my credentials. This cycle repeats indefinitely and I do not receive an error message — it simply returns to the login prompt.
+
+I attempted to access Outlook via both the desktop application and the web browser with the same result. I also restarted my workstation and cleared my browser cache; neither resolved the issue.
+
+I have an important coordination meeting this morning and require access to my calendar and email. Please advise at your earliest convenience.
+
+Respectfully,
+CW2 Sandra Petrakis
+G6 Staff Element
+Room 114B, Bldg 2241

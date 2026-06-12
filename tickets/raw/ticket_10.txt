@@ -1,0 +1,17 @@
+Subject: Unable to View Shared Calendar in Outlook
+
+To Whom It May Concern,
+
+I am experiencing difficulty with a shared calendar in Microsoft Outlook. My section chief, Mr. Garza, informed me last week that he had shared his calendar with me so that I could assist with scheduling on his behalf. However, when I attempt to open it from the Shared Calendars pane, I receive the following message: "The folder could not be opened."
+
+I have attempted the following troubleshooting steps without success:
+  - Removed and re-added the calendar from the original sharing invitation email
+  - Restarted Outlook completely
+  - Confirmed with Mr. Garza that permissions are still set to "Can view all details"
+
+The issue persists across restarts. I would appreciate any assistance you can provide, as I need to view his schedule for an upcoming TDY coordination that must be finalized this week.
+
+Thank you,
+Ms. Priya Nambiar
+Resource Management Officer
+DSN: 312-555-0174

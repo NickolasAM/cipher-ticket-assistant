@@ -4,20 +4,104 @@
     "file": "ticket_01.txt",
     "expected_category": "Network/Connectivity",
     "expected_urgency": "Medium",
-    "note": "Out-of-country (TDY Germany) blocking base apps via firewall/VPN. Thursday briefing is a mild impact signal -> Medium, not Low."
+    "note": "Out-of-country (TDY Germany) blocking base apps via firewall/VPN. Thursday briefing -> Medium."
   },
   {
     "id": "ticket_02",
     "file": "ticket_02.txt",
     "expected_category": "Account/Password",
     "expected_urgency": "High",
-    "note": "Account locked from repeated failed logins; fine yesterday suggests an expired/changed password being retried. Fully locked out + same-day deadline -> High by impact, though a lockout is routine by topic."
+    "note": "Account locked from failed logins; fully locked out + same-day deadline -> High."
   },
   {
     "id": "ticket_03",
     "file": "ticket_03.txt",
     "expected_category": "Access/SSO",
     "expected_urgency": "Medium",
-    "note": "SharePoint access denied though login works -> permissions likely changed/removed from a group. Borderline Software/Applications vs Access/SSO; filed Access/SSO as a permission problem, not a usage question. Meeting tomorrow + not fully blocked -> Medium."
+    "note": "SharePoint access denied though login works -> permission issue. Meeting tomorrow -> Medium."
+  },
+  {
+    "id": "ticket_04",
+    "file": "ticket_04.txt",
+    "expected_category": "Hardware",
+    "expected_urgency": "High",
+    "note": "Laptop shutting off repeatedly, losing work, 1500 brief -> High."
+  },
+  {
+    "id": "ticket_05",
+    "file": "ticket_05.txt",
+    "expected_category": "Software/Applications",
+    "expected_urgency": "Low",
+    "note": "SharePoint how-to question, no deadline -> Low."
+  },
+  {
+    "id": "ticket_06",
+    "file": "ticket_06.txt",
+    "expected_category": "Access/SSO",
+    "expected_urgency": "High",
+    "note": "Can't log into Outlook (login loop), meeting imminent -> High."
+  },
+  {
+    "id": "ticket_07",
+    "file": "ticket_07.txt",
+    "expected_category": "Account/Password",
+    "expected_urgency": "High",
+    "note": "Workstation lockout, fully blocked -> High."
+  },
+  {
+    "id": "ticket_08",
+    "file": "ticket_08.txt",
+    "expected_category": "Network/Connectivity",
+    "expected_urgency": "High",
+    "note": "Overseas/TDY, all internal systems unreachable -> High. (AI said 'Critical'; no such level -> High.)"
+  },
+  {
+    "id": "ticket_09",
+    "file": "ticket_09.txt",
+    "expected_category": "Hardware",
+    "expected_urgency": "Medium",
+    "note": "One monitor dead after move; can still work -> Medium."
+  },
+  {
+    "id": "ticket_10",
+    "file": "ticket_10.txt",
+    "expected_category": "Software/Applications",
+    "expected_urgency": "Medium",
+    "note": "Can't open shared Outlook calendar, needed this week -> Medium."
+  },
+  {
+    "id": "ticket_11",
+    "file": "ticket_11.txt",
+    "expected_category": "Account/Password",
+    "expected_urgency": "High",
+    "note": "Account locked mid-session, CO call in 20 min. AI said 'Critical' -> mapped to High (top of our scale)."
+  },
+  {
+    "id": "ticket_12",
+    "file": "ticket_12.txt",
+    "expected_category": "Access/SSO",
+    "expected_urgency": "Medium",
+    "note": "Contracting portal rejecting CAC login (one app) -> Access/SSO, Medium."
+  },
+  {
+    "id": "ticket_13",
+    "file": "ticket_13.txt",
+    "expected_category": "Hardware",
+    "expected_urgency": "Low",
+    "note": "Docking station request, nothing blocked -> Low."
+  },
+  {
+    "id": "ticket_14",
+    "file": "ticket_14.txt",
+    "expected_category": "Access/SSO",
+    "expected_urgency": "Low",
+    "note": "Zoom SSO login loop, has a workaround. AI put this in Software/Applications -> corrected to Access/SSO (login issue, same as ticket_06). Low."
+  },
+  {
+    "id": "ticket_15",
+    "file": "ticket_15.txt",
+    "expected_category": "Access/SSO",
+    "expected_urgency": "Medium",
+    "note": "SharePoint access denied, meeting Thursday -> Access/SSO, Medium (same as ticket_03)."
   }
 ]

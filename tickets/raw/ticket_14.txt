@@ -1,0 +1,6 @@
+So I'm having a weird Zoom issue. Whenever I try to join a meeting through the government Zoom link, it takes me to the SSO login page, I put in my work email, and then... nothing happens. The spinner goes for like 10 seconds and then it just brings me back to the same SSO page again. Endless loop.
+
+I've been getting around it by having people send me a regular personal meeting link instead but that seems like probably not the right solution lol. My coworker Marcus sits right next to me and has zero issues with Zoom so it seems like it's just my account. I already tried uninstalling and reinstalling Zoom and it still does the exact same thing.
+
+- Wendy Osei
+  Contract Specialist
