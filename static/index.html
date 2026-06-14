@@ -38,16 +38,20 @@
   .empty .shield{width:48px;height:48px;border-radius:12px;margin:0 auto 16px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;}
   .empty h3{color:var(--text);font-size:18px;margin-bottom:6px;}
   .results{display:none;}
-  .result-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+  .result-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px;}
   .result-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;}
   .result-card.full{grid-column:1/-1;}
   .result-card .k{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
   .result-card .v{font-size:15px;}
   .pill{display:inline-block;padding:5px 12px;border-radius:999px;font-size:14px;font-weight:600;}
   .pill.cat{background:rgba(96,165,250,.15);color:var(--accent);border:1px solid rgba(96,165,250,.3);}
+  .pill.review{background:rgba(245,158,11,.18);color:var(--medium);border:1px solid rgba(245,158,11,.45);}
   .urg-Low{background:rgba(16,185,129,.15);color:var(--low);border:1px solid rgba(16,185,129,.35);}
   .urg-Medium{background:rgba(245,158,11,.15);color:var(--medium);border:1px solid rgba(245,158,11,.35);}
   .urg-High{background:rgba(239,68,68,.15);color:var(--high);border:1px solid rgba(239,68,68,.35);}
+  .conf-High{background:rgba(16,185,129,.15);color:var(--low);border:1px solid rgba(16,185,129,.35);}
+  .conf-Medium{background:rgba(96,165,250,.15);color:var(--accent);border:1px solid rgba(96,165,250,.3);}
+  .conf-Low{background:rgba(245,158,11,.15);color:var(--medium);border:1px solid rgba(245,158,11,.35);}
   .draft-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
   .copy-btn{background:var(--surface-2);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:8px;font-size:13px;cursor:pointer;}
   .copy-btn:hover{border-color:var(--primary);}
@@ -78,12 +82,12 @@
     <p>Paste a messy help-desk ticket and Cipher AI identifies the issue, classifies urgency, uncovers the likely cause, and drafts a response your team can review and send.</p>
   </div>
   <div class="badges">
-    <span class="badge"> Instant Insights</span>
-    <span class="badge"> Clear Root Causes</span>
-    <span class="badge"> Actionable Fixes</span>
+    <span class="badge">Instant Insights</span>
+    <span class="badge">Clear Root Causes</span>
+    <span class="badge">Actionable Fixes</span>
   </div>
   <div class="card">
-    <div class="card-label">🎫 Ticket text</div>
+    <div class="card-label">Ticket text</div>
     <textarea id="ticket" maxlength="4000" placeholder="Paste a help-desk ticket — typos, rambling, and all…
 
 Examples:
@@ -94,7 +98,7 @@ Examples:
 - Laptop keeps shutting off"></textarea>
     <div class="input-footer"><span class="char-count"><span id="count">0</span> / 4000</span></div>
     <div class="review-note">Cipher AI drafts a response — a human reviews before sending.</div>
-    <button class="btn" id="analyzeBtn" onclick="analyze()"><span id="btnText">✦ Analyze Ticket</span></button>
+    <button class="btn" id="analyzeBtn" onclick="analyze()"><span id="btnText">Analyze Ticket</span></button>
   </div>
   <div class="error" id="error"></div>
   <div class="empty" id="empty">
@@ -107,6 +111,7 @@ Examples:
     <div class="result-grid">
       <div class="result-card"><div class="k">Category</div><div class="v"><span class="pill cat" id="r-category"></span></div></div>
       <div class="result-card"><div class="k">Urgency</div><div class="v"><span class="pill" id="r-urgency"></span></div></div>
+      <div class="result-card"><div class="k">Confidence</div><div class="v"><span class="pill" id="r-confidence"></span></div></div>
     </div>
     <div class="result-card full" style="margin-top:16px;"><div class="k">Likely Cause</div><div class="v" id="r-cause"></div></div>
     <div class="result-card full" style="margin-top:16px;">
@@ -130,8 +135,9 @@ Examples:
       if(!res.ok)throw new Error('Server error');
       const data=await res.json();
       document.getElementById('r-summary').textContent=data.summary;
-      document.getElementById('r-category').textContent=data.category;
+      const cat=document.getElementById('r-category');cat.textContent=data.category;cat.className=(data.category==='Needs human review')?'pill review':'pill cat';
       const urg=document.getElementById('r-urgency');urg.textContent=data.urgency;urg.className='pill urg-'+data.urgency;
+      const conf=document.getElementById('r-confidence');if(data.confidence){conf.textContent=data.confidence;conf.className='pill conf-'+data.confidence;}else{conf.textContent='—';conf.className='pill';}
       document.getElementById('r-cause').textContent=data.likely_cause;
       document.getElementById('r-draft').value=data.draft_response;
       document.getElementById('empty').style.display='none';
@@ -139,7 +145,7 @@ Examples:
     }catch(e){
       errorEl.textContent="Couldn't reach the analyzer. Make sure the server is running, then try again.";
       errorEl.style.display='block';
-    }finally{btn.disabled=false;btnText.textContent='✦ Analyze Ticket';}
+    }finally{btn.disabled=false;btnText.textContent='Analyze Ticket';}
   }
   function copyDraft(){
     navigator.clipboard.writeText(document.getElementById('r-draft').value);
