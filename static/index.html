@@ -42,11 +42,20 @@
   .empty{text-align:center;padding:48px 24px;border:1px dashed var(--border);border-radius:16px;color:var(--muted);}
   .empty .shield{width:48px;height:48px;border-radius:12px;margin:0 auto 16px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;}
   .empty h3{color:var(--text);font-size:18px;margin-bottom:6px;}
+  .skeleton{display:none;}
+  .sk{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:16px;}
+  .sk-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;}
+  .sk-grid .sk{margin-bottom:0;}
+  .sk-line{height:12px;border-radius:6px;background:linear-gradient(90deg,#1b2536 25%,#2a3850 50%,#1b2536 75%);background-size:200% 100%;animation:shimmer 1.25s ease-in-out infinite;}
+  @keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
   .results{display:none;}
+  .results.show{display:block;animation:reveal .45s cubic-bezier(.2,.7,.2,1) both;}
+  @keyframes reveal{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
   .result-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px;}
   .result-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;}
   .result-card.full{grid-column:1/-1;}
-  .result-card .k{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+  .result-card .k{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+  .result-card .k svg{width:13px;height:13px;color:var(--accent);flex-shrink:0;}
   .result-card .v{font-size:15px;}
   .pill{display:inline-block;padding:5px 12px;border-radius:999px;font-size:14px;font-weight:600;}
   .pill.cat{background:rgba(96,165,250,.15);color:var(--accent);border:1px solid rgba(96,165,250,.3);}
@@ -61,7 +70,8 @@
   .copy-btn{background:var(--surface-2);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:8px;font-size:13px;cursor:pointer;}
   .copy-btn:hover{border-color:var(--primary);}
   .error{color:var(--high);text-align:center;padding:16px;display:none;}
-  @media(max-width:560px){.result-grid{grid-template-columns:1fr;}.hero h2{font-size:32px;}}
+  @media(max-width:560px){.result-grid,.sk-grid{grid-template-columns:1fr;}.hero h2{font-size:32px;}}
+  @media(prefers-reduced-motion:reduce){.sk-line{animation:none;}.results.show{animation:none;}.badge{transition:none;}}
 </style>
 </head>
 <body>
@@ -112,16 +122,26 @@ Examples:
     <h3>No ticket analyzed yet</h3>
     <p>Paste a help-desk ticket above and Cipher AI will generate an instant assessment.</p>
   </div>
-  <div class="results" id="results">
-    <div class="result-card full"><div class="k">Summary</div><div class="v" id="r-summary"></div></div>
-    <div class="result-grid">
-      <div class="result-card"><div class="k">Category</div><div class="v"><span class="pill cat" id="r-category"></span></div></div>
-      <div class="result-card"><div class="k">Urgency</div><div class="v"><span class="pill" id="r-urgency"></span></div></div>
-      <div class="result-card"><div class="k">Confidence</div><div class="v"><span class="pill" id="r-confidence"></span></div></div>
+  <div class="skeleton" id="skeleton">
+    <div class="sk"><div class="sk-line" style="width:35%;height:9px;margin-bottom:12px;"></div><div class="sk-line" style="width:90%;"></div></div>
+    <div class="sk-grid">
+      <div class="sk"><div class="sk-line" style="width:60%;height:9px;margin-bottom:12px;"></div><div class="sk-line" style="width:75%;height:20px;border-radius:999px;"></div></div>
+      <div class="sk"><div class="sk-line" style="width:60%;height:9px;margin-bottom:12px;"></div><div class="sk-line" style="width:65%;height:20px;border-radius:999px;"></div></div>
+      <div class="sk"><div class="sk-line" style="width:65%;height:9px;margin-bottom:12px;"></div><div class="sk-line" style="width:55%;height:20px;border-radius:999px;"></div></div>
     </div>
-    <div class="result-card full" style="margin-top:16px;"><div class="k">Likely Cause</div><div class="v" id="r-cause"></div></div>
+    <div class="sk"><div class="sk-line" style="width:28%;height:9px;margin-bottom:12px;"></div><div class="sk-line" style="width:85%;"></div></div>
+    <div class="sk"><div class="sk-line" style="width:32%;height:9px;margin-bottom:14px;"></div><div class="sk-line" style="width:100%;margin-bottom:9px;"></div><div class="sk-line" style="width:95%;margin-bottom:9px;"></div><div class="sk-line" style="width:70%;"></div></div>
+  </div>
+  <div class="results" id="results">
+    <div class="result-card full"><div class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="8" y1="13" x2="16" y2="13"></line><line x1="8" y1="17" x2="13" y2="17"></line></svg>Summary</div><div class="v" id="r-summary"></div></div>
+    <div class="result-grid">
+      <div class="result-card"><div class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>Category</div><div class="v"><span class="pill cat" id="r-category"></span></div></div>
+      <div class="result-card"><div class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>Urgency</div><div class="v"><span class="pill" id="r-urgency"></span></div></div>
+      <div class="result-card"><div class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg>Confidence</div><div class="v"><span class="pill" id="r-confidence"></span></div></div>
+    </div>
+    <div class="result-card full" style="margin-top:16px;"><div class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.5"></circle></svg>Likely Cause</div><div class="v" id="r-cause"></div></div>
     <div class="result-card full" style="margin-top:16px;">
-      <div class="draft-head"><div class="k" style="margin-bottom:0;">Draft Response</div><button class="copy-btn" id="copyBtn" onclick="copyDraft()">Copy</button></div>
+      <div class="draft-head"><div class="k" style="margin-bottom:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>Draft Response</div><button class="copy-btn" id="copyBtn" onclick="copyDraft()">Copy</button></div>
       <textarea id="r-draft" style="min-height:160px;"></textarea>
       <div class="review-note" style="text-align:left;margin-bottom:0;">Review and edit before sending.</div>
     </div>
@@ -132,10 +152,14 @@ Examples:
   ticket.addEventListener('input',()=>{count.textContent=ticket.value.length;});
   async function analyze(){
     const text=ticket.value.trim(),errorEl=document.getElementById('error');
+    const results=document.getElementById('results'),skeleton=document.getElementById('skeleton'),empty=document.getElementById('empty');
     errorEl.style.display='none';
     if(!text){errorEl.textContent='Please paste a ticket first.';errorEl.style.display='block';return;}
     const btn=document.getElementById('analyzeBtn'),btnText=document.getElementById('btnText');
     btn.disabled=true;btnText.textContent='Analyzing…';
+    empty.style.display='none';
+    results.classList.remove('show');
+    skeleton.style.display='block';
     try{
       const res=await fetch('/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text})});
       if(!res.ok)throw new Error('Server error');
@@ -146,9 +170,10 @@ Examples:
       const conf=document.getElementById('r-confidence');if(data.confidence){conf.textContent=data.confidence;conf.className='pill conf-'+data.confidence;}else{conf.textContent='—';conf.className='pill';}
       document.getElementById('r-cause').textContent=data.likely_cause;
       document.getElementById('r-draft').value=data.draft_response;
-      document.getElementById('empty').style.display='none';
-      document.getElementById('results').style.display='block';
+      skeleton.style.display='none';
+      results.classList.add('show');
     }catch(e){
+      skeleton.style.display='none';
       errorEl.textContent="Couldn't reach the analyzer. Make sure the server is running, then try again.";
       errorEl.style.display='block';
     }finally{btn.disabled=false;btnText.textContent='Analyze Ticket';}
