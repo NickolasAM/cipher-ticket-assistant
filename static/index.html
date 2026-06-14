@@ -7,21 +7,26 @@
 <style>
   :root {
     --bg:#0B1220; --surface:#111827; --surface-2:#1B2536; --border:#243044;
-    --primary:#2563EB; --accent:#60A5FA; --low:#10B981; --medium:#F59E0B;
-    --high:#EF4444; --text:#F9FAFB; --muted:#9CA3AF;
+    --primary:#2563EB; --accent:#60A5FA; --cyan:#38BDF8; --indigo:#818CF8;
+    --low:#10B981; --medium:#F59E0B; --high:#EF4444; --text:#F9FAFB; --muted:#9CA3AF;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.5;padding:40px 20px;}
-  .container{max-width:720px;margin:0 auto;}
-  .brand{display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:40px;}
-  .brand .logo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--accent));display:flex;align-items:center;justify-content:center;}
-  .brand h1{font-size:20px;font-weight:700;}
-  .hero{text-align:center;margin-bottom:28px;}
-  .hero h2{font-size:40px;font-weight:800;letter-spacing:-1px;margin-bottom:14px;}
-  .hero p{color:var(--muted);font-size:17px;max-width:560px;margin:0 auto;}
-  .badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;}
-  .badge{display:flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--border);padding:8px 14px;border-radius:999px;font-size:13px;}
-  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.5;padding:40px 20px;position:relative;overflow-x:hidden;}
+  body::before{content:"";position:fixed;top:-220px;left:50%;width:760px;height:520px;transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(37,99,235,.22),rgba(56,189,248,.06) 45%,transparent 70%);pointer-events:none;z-index:0;}
+  .container{max-width:720px;margin:0 auto;position:relative;z-index:1;}
+  .brand{display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:44px;}
+  .brand h1{font-size:20px;font-weight:700;letter-spacing:-.3px;}
+  .hero{text-align:center;margin-bottom:30px;}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:11.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);background:rgba(255,255,255,.03);border:1px solid var(--border);padding:6px 14px;border-radius:999px;margin-bottom:22px;}
+  .eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px rgba(56,189,248,.7);}
+  .hero h2{font-size:44px;font-weight:800;letter-spacing:-1.5px;line-height:1.08;margin-bottom:16px;}
+  .hero h2 .grad{background:linear-gradient(100deg,var(--accent) 0%,var(--cyan) 55%,var(--indigo) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;}
+  .hero p{color:var(--muted);font-size:17px;max-width:540px;margin:0 auto;}
+  .badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:42px;}
+  .badge{display:inline-flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);padding:7px 16px 7px 7px;border-radius:999px;font-size:14px;font-weight:500;color:var(--text);transition:border-color .2s,transform .2s,background .2s;}
+  .badge:hover{border-color:rgba(56,189,248,.45);transform:translateY(-2px);background:#141d2e;}
+  .badge-ic{width:28px;height:28px;border-radius:8px;background:rgba(56,189,248,.12);display:flex;align-items:center;justify-content:center;color:var(--cyan);flex-shrink:0;}
+  .badge-ic svg{width:15px;height:15px;}
   .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px;}
   .card-label{display:flex;align-items:center;gap:8px;font-weight:600;margin-bottom:14px;}
   textarea{width:100%;min-height:150px;resize:vertical;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;color:var(--text);padding:14px;font-family:inherit;font-size:15px;line-height:1.6;}
@@ -56,7 +61,7 @@
   .copy-btn{background:var(--surface-2);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:8px;font-size:13px;cursor:pointer;}
   .copy-btn:hover{border-color:var(--primary);}
   .error{color:var(--high);text-align:center;padding:16px;display:none;}
-  @media(max-width:560px){.result-grid{grid-template-columns:1fr;}.hero h2{font-size:30px;}}
+  @media(max-width:560px){.result-grid{grid-template-columns:1fr;}.hero h2{font-size:32px;}}
 </style>
 </head>
 <body>
@@ -78,13 +83,14 @@
     <h1>Cipher AI</h1>
   </div>
   <div class="hero">
-    <h2>Decode Any IT Ticket in Seconds</h2>
+    <div class="eyebrow"><span class="eyebrow-dot"></span>AI Ticket Triage</div>
+    <h2><span class="grad">Decode</span> Any IT Ticket in Seconds</h2>
     <p>Paste a messy help-desk ticket and Cipher AI identifies the issue, classifies urgency, uncovers the likely cause, and drafts a response your team can review and send.</p>
   </div>
   <div class="badges">
-    <span class="badge">Instant Insights</span>
-    <span class="badge">Clear Root Causes</span>
-    <span class="badge">Actionable Fixes</span>
+    <span class="badge"><span class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span>Instant Insights</span>
+    <span class="badge"><span class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.5"></circle></svg></span>Clear Root Causes</span>
+    <span class="badge"><span class="badge-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></span>Actionable Fixes</span>
   </div>
   <div class="card">
     <div class="card-label">Ticket text</div>
