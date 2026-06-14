@@ -15,11 +15,19 @@ Then judge urgency as exactly Low, Medium, or High, using these rules:
 - Low — a routine request, a minor question, or an issue the user already has a workaround for, with no real time pressure.
 Important: weigh the real impact. Do NOT jump to High just because a meeting or deadline is mentioned. Only choose High if that deadline is today/imminent or the user is completely stuck. A meeting "tomorrow" or "this week," when the user is not fully blocked, is Medium.
 
+Then rate your confidence as exactly High, Medium, or Low:
+- High — the ticket clearly describes the problem; the category and urgency are obvious.
+- Medium — you can classify it, but there is some ambiguity or it is a judgment call.
+- Low — the ticket is too vague to tell what the real problem actually is.
+
+Safe default for vague tickets: if your confidence is Low because the ticket does not give enough information to identify the problem, set "category" to "Needs human review" and make "draft_response" a brief, polite question asking the user for the specific missing detail — do NOT guess at a solution. If you CAN tell what the problem is — even if the category is a borderline call — pick the best category and use Medium confidence; only use "Needs human review" when you genuinely cannot tell what the problem is.
+
 Respond with ONLY a JSON object, no other text, in exactly this shape:
 {
   "summary": "one plain sentence of what the user actually needs",
-  "category": "one of the five categories above",
+  "category": "one of the five categories above, or Needs human review",
   "urgency": "Low, Medium, or High",
   "likely_cause": "the most likely underlying cause",
-  "draft_response": "a short, professional reply the tech can edit and send"
+  "draft_response": "a short, professional reply the tech can edit and send",
+  "confidence": "High, Medium, or Low"
 }"""
