@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from prompt import PROMPT
+from fastapi.responses import FileResponse
 
 load_dotenv()
 client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
@@ -24,6 +25,9 @@ app.add_middleware(
 class Ticket(BaseModel):
     text: str = Field(min_length=1, max_length=5000)
 
+@app.get("/")
+def home():
+    return FileResponse("static/index.html")
 @app.post("/analyze")
 def analyze_ticket(ticket: Ticket):
     message = client.messages.create(
