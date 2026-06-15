@@ -1,6 +1,8 @@
+cat > .gitignore << 'EOF'
 # Secrets / environment
 .env
 .env.*
+!.env.example
 
 # Python
 __pycache__/
@@ -12,4 +14,5 @@ venv/
 node_modules/
 
 # OS / editor cruft
-.DS_Store!.env.example
+.DS_Store
+EOF
