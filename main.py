@@ -2,7 +2,7 @@ import os
 import json
 from dotenv import load_dotenv
 from anthropic import Anthropic
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from prompt import PROMPT
@@ -28,6 +28,7 @@ class Ticket(BaseModel):
 @app.get("/")
 def home():
     return FileResponse("static/index.html")
+
 @app.post("/analyze")
 def analyze_ticket(ticket: Ticket):
     message = client.messages.create(
@@ -39,4 +40,11 @@ def analyze_ticket(ticket: Ticket):
     reply = message.content[0].text
     start = reply.find("{")
     end = reply.rfind("}")
-    return json.loads(reply[start:end + 1])
+    # Claude should return clean JSON; if it ever doesn't, fail clearly instead of crashing
+    try:
+        return json.loads(reply[start:end + 1])
+    except (json.JSONDecodeError, ValueError):
+        raise HTTPException(
+            status_code=502,
+            detail="The analyzer returned an unexpected response. Please try again.",
+        )

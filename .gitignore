@@ -12,4 +12,4 @@ venv/
 node_modules/
 
 # OS / editor cruft
-.DS_Store
+.DS_Store!.env.example
